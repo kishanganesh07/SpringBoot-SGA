@@ -1,35 +1,21 @@
 package com.entity;
 
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "books")
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
 
-    @NotBlank(message = "Title is mandatory")
     private String title;
-
     private String genre;
-
-    @Min(value = 0, message = "Price cannot be negative")
     private Double price;
-
-    @NotNull(message = "Published date is required")
-    @org.springframework.format.annotation.DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publishedDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", nullable = false)
-    @NotNull(message = "Author must be selected")
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private Author author;
 
     // Getters and Setters

@@ -10,15 +10,15 @@
         <a href="/" class="nav-brand">Welcome to Library Manager</a>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/authors">Authors</a></li>
-            <li><a href="/books">Books</a></li>
+            <li><a href="/authors/list">Authors</a></li>
+            <li><a href="/books/list">Books</a></li>
         </ul>
     </nav>
 
     <main class="container">
         <div class="page-header">
             <h1>Authors Directory</h1>
-            <a href="/authors/new" class="btn btn-primary">Add Author</a>
+            <a href="/authors/add" class="btn btn-primary">Add Author</a>
         </div>
 
         <div class="box">
@@ -29,7 +29,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Country</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +38,6 @@
                             <td><strong>${author.name}</strong></td>
                             <td>${author.email}</td>
                             <td>${author.country}</td>
-                            <td>
-                                <a href="/authors/edit/${author.authorId}" class="btn">Edit</a>
-                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
