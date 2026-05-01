@@ -1,0 +1,10 @@
+com\controllers\HomeController.class
+com\repository\BookRepository.class
+com\DemoApplication.class
+com\repository\AuthorRepository.class
+com\entity\Author.class
+com\controllers\BookController.class
+com\entity\Book.class
+com\controllers\AuthorController.class
+com\service\AuthorService.class
+com\service\BookService.class
