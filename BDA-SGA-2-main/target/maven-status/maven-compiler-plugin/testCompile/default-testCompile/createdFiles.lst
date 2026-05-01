@@ -1,2 +1,3 @@
 com\AuthorServiceTest.class
 com\BookRepositoryTest.class
+com\BookServiceTest.class

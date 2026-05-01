@@ -18,7 +18,11 @@ public class BookService {
     }
 
     public Book saveBook(Book book) {
-        return bookRepository.save(book);
+        try {
+            return bookRepository.save(book);
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving book: " + e.getMessage());
+        }
     }
 
     public Book getBookById(Long id) {

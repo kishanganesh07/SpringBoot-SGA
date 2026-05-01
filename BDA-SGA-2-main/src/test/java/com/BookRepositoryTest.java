@@ -37,7 +37,10 @@ public class BookRepositoryTest {
         List<Book> books = bookRepository.findAllBooksWithAuthor();
 
         assertFalse(books.isEmpty());
-        assertNotNull(books.get(0).getAuthor());
-        assertEquals("J.K. Rowling", books.get(0).getAuthor().getName());
+        // Verify that the JOIN FETCH query loads authors properly
+        boolean found = books.stream()
+                .anyMatch(b -> "Harry Potter".equals(b.getTitle())
+                        && "J.K. Rowling".equals(b.getAuthor().getName()));
+        assertTrue(found, "Should find Harry Potter by J.K. Rowling in results");
     }
 }

@@ -18,7 +18,11 @@ public class AuthorService {
     }
 
     public Author saveAuthor(Author author) {
-        return authorRepository.save(author);
+        try {
+            return authorRepository.save(author);
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving author: " + e.getMessage());
+        }
     }
 
     public Author getAuthorById(Long id) {
