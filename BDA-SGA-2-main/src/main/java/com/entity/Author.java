@@ -23,9 +23,6 @@ public class Author {
 
     private String country;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Book> books;
-
     // Getters and Setters
     public Long getAuthorId() { return authorId; }
     public void setAuthorId(Long authorId) { this.authorId = authorId; }
@@ -35,6 +32,4 @@ public class Author {
     public void setEmail(String email) { this.email = email; }
     public String getCountry() { return country; }
     public void setCountry(String country) { this.country = country; }
-    public List<Book> getBooks() { return books; }
-    public void setBooks(List<Book> books) { this.books = books; }
 }

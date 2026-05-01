@@ -24,6 +24,7 @@ public class Book {
     private Double price;
 
     @NotNull(message = "Published date is required")
+    @org.springframework.format.annotation.DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publishedDate;
 
     @ManyToOne(fetch = FetchType.EAGER)

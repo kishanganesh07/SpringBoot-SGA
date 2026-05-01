@@ -2,39 +2,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Authors List</title>
+    <title>Authors - Library Manager</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <nav>
-        <div>Library System</div>
+        <a href="/" class="nav-brand">Welcome to Library Manager</a>
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/authors">Authors</a></li>
             <li><a href="/books">Books</a></li>
         </ul>
     </nav>
-    <div class="container">
-        <h2>Authors</h2>
-        <a href="/authors/new" class="btn">Add New Author</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th><th>Name</th><th>Email</th><th>Country</th><th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${authors}" var="author">
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Authors Directory</h1>
+            <a href="/authors/new" class="btn btn-primary">Add Author</a>
+        </div>
+
+        <div class="box">
+            <table>
+                <thead>
                     <tr>
-                        <td>${author.authorId}</td>
-                        <td>${author.name}</td>
-                        <td>${author.email}</td>
-                        <td>${author.country}</td>
-                        <td><a href="/authors/edit/${author.authorId}" class="btn btn-edit">Edit</a></td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Country</th>
+                        <th>Actions</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    <c:forEach items="${authors}" var="author">
+                        <tr>
+                            <td>${author.authorId}</td>
+                            <td><strong>${author.name}</strong></td>
+                            <td>${author.email}</td>
+                            <td>${author.country}</td>
+                            <td>
+                                <a href="/authors/edit/${author.authorId}" class="btn">Edit</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 </html>
