@@ -4,30 +4,45 @@ import com.entity.Author;
 import com.repository.AuthorRepository;
 import com.service.AuthorService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class AuthorServiceTest {
 
-    @MockBean
+    @Mock
     private AuthorRepository authorRepository;
 
-    @Autowired
+    @InjectMocks
     private AuthorService authorService;
 
     @Test
     public void testSaveAuthor() {
         Author author = new Author();
-        author.setName("John Doe");
+        author.setName("Test Author");
 
-        Mockito.when(authorRepository.save(author)).thenReturn(author);
+        when(authorRepository.save(author)).thenReturn(author);
+        Author savedAuthor = authorService.saveAuthor(author);
 
-        Author saved = authorService.saveAuthor(author);
+        assertNotNull(savedAuthor);
+        assertEquals("Test Author", savedAuthor.getName());
+        verify(authorRepository, times(1)).save(author);
+    }
 
-        assertEquals("John Doe", saved.getName());
+    @Test
+    public void testGetAuthorById_Success() {
+        Author author = new Author();
+        author.setAuthorId(1L);
+        author.setName("Test");
+
+        when(authorRepository.findById(1L)).thenReturn(Optional.of(author));
+        Author found = authorService.getAuthorById(1L);
+
+        assertEquals("Test", found.getName());
     }
 }
